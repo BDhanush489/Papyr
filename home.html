@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Document</title>
+    <script>
+        function goToHome() {
+            // Trigger the background fade-in by adding a class that changes the background color
+            document.querySelector('.home').classList.add('fade-in-bg');
+            document.querySelector('.cart').style.backgroundColor = 'transparent';
+            
+            // Delay the navigation by 900 ms
+            setTimeout(function() {
+                window.location.href = 'home.html';
+            }, 100);
+        }
+       
+        function goToDocuments() {
+            // Trigger the background fade-in by adding a class that changes the background color
+            document.querySelector('.documents').classList.add('fade-in-bg');
+            document.querySelector('.cart').style.backgroundColor = 'transparent';
+            
+            // Delay the navigation by 900 ms
+            setTimeout(function() {
+                window.location.href = 'Documents.html';
+            }, 100);
+        }
+       
+        function goToTransactionHistory() {
+            // Trigger the background fade-in by adding a class that changes the background color
+            document.querySelector('.transaction-history').classList.add('fade-in-bg');
+            document.querySelector('.cart').style.backgroundColor = 'transparent';
+            
+            // Delay the navigation by 900 ms
+            setTimeout(function() {
+                window.location.href = 'TransactionHistory.html';
+            }, 100);
+        }
+
+        function goToCart() {
+            document.querySelector('.cart').classList.add('fade-in-bg');
+            document.querySelector('.transaction-history').style.backgroundColor = 'transparent';
+
+            // Delay the navigation by 900 ms
+            setTimeout(function () {
+                window.location.href = 'Cart.html';
+            }, 100);
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav class="navbar">
+    
+            <div class="profile-container">
+
+                <img class="profile-img" src="Logo.png" />
+                <div class="title">PrintPay</div>
+
+                <div class="menu-item home" onclick="window.location.href='home.html'">Home</div>
+                <div class="menu-item cart" onclick="goToCart()">Cart</div>
+                <div class="menu-item documents" onclick="goToDocuments()">Documents</div>
+                <div class="menu-item transaction-history" onclick="goToTransactionHistory()">
+                    Transaction History</div>
+
+                    <div class="menu-item order">Order</div>
+                    
+                    <div class="auth-buttons">
+                        <div class="auth-button sign-in">Sign in</div>
+                        <div class="auth-button register">Register</div>
+                    </div>
+            </div>
+        </nav>
+
+        <div class="section1">
+            <div class="section-inner1">
+                <div class="section-inner-content1"></div>
+            </div>
+        </div>
+        <div class="section2">
+            <div class="section-inner2"></div>
+        </div>
+        <div class="section3">
+            <div class="section-inner3">
+                <div class="section-inner-content2"></div>
+            </div>
+        </div>
+
+        <div class="greeting">Welcome, John Doe</div>
+        <div class="account-summary">Account Summary</div>
+        <div class="recent-activities">Recent Activities</div>
+        <div class="user-info username">Username: John</div>
+        <div class="user-info document1">Printed Document: Project Report</div>
+        <div class="user-info rfid">RFID Card Number: 1263-1243-4123</div>
+        <div id="points" class="user-info points">2500</div>
+        <div class="user-info recharged">Recharged Points: 100</div>
+        <div class="user-info document2">Printed Document: Invoice</div>
+
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    // Ensure that points are stored in localStorage (you can initialize it if it doesn't exist)
+    if (!localStorage.getItem('userPoints')) {
+        localStorage.setItem('userPoints', '2500'); // Initial points if not already set
+    }
+
+    // Update points in the div when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        const pointsDiv = document.getElementById('points');  // Target the div with id="points"
+        const currentPoints = localStorage.getItem('userPoints');  // Retrieve points from localStorage
+        pointsDiv.textContent = currentPoints;  // Update the div content to show the current points
+    });
+    
+</script>

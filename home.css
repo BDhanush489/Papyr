@@ -1,0 +1,356 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(to top, rgb(0, 255, 251), rgb(242, 0, 255));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Ensures the background sticks on scroll */
+}
+
+.container {
+    background: linear-gradient(to top, rgb(0, 255, 251), rgb(242, 0, 255));
+    min-height: 100%;
+    /* Ensures the container covers the entire viewport height */
+    width: 100%;
+    /* box-shadow: -8px -21px 250px -240px white inset; */
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+.navbar {
+    /* width: 100; */
+    display: flex;
+    position: absolute;
+    align-items: center;
+}
+
+
+.video {
+    transform: scale(1.2);
+    opacity: 0.6;
+    /* opacity: 0; Removes the video */
+    width: 100vw;
+    /* Adjust video width */
+    height: 100vh;
+}
+
+.profile-container {
+    position: absolute;
+    display: flex;
+    /* flex-direction: row; */
+    width: 275px;
+    height: 120px;
+    left: 0px;
+    top: 0px;
+    gap: 10px;
+}
+
+.profile-img {
+    position: relative;
+    width: 119px;
+    height: 111px;
+    left: 0px;
+    top: 0px;
+}
+
+.title {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    font-size: 38px;
+    font-family: Inter;
+    font-weight: 600;
+    line-height: 120px;
+    word-wrap: break-word;
+}
+
+.section1,
+.section2,
+.section3 {
+    position: absolute;
+    height: 1425px;
+    width: 100%;
+    /* padding: 10px; */
+}
+
+.section1 {
+    display: inline-flex;
+    width: 100%;
+    height: 360px;
+    /* margin-left: 4px; */
+    top: 363px;
+}
+
+.section-inner1 {
+    height: 343px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.section-inner-content1 {
+    height: 343px;
+    background: #D9D9D9;
+    mix-blend-mode: luminosity;
+    box-shadow: 1.2px 1.2px 1.2px;
+    border-radius: 43px;
+    filter: blur(1.2px);
+}
+
+.section2 {
+    width: 100%;
+    height: 195px;
+    /* left: 7px; */
+    top: 154px;
+    display: inline-flex;
+}
+
+.section-inner2 {
+    height: 185px;
+    background: #D9D9D9;
+    border-radius: 43px;
+    mix-blend-mode: luminosity;
+}
+
+.section3 {
+    width: 100%;
+    height: 363px;
+    top: 740px;
+    opacity: 0.90;
+    display: inline-flex;
+}
+
+.section-inner3 {
+    height: 343px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.section-inner-content2 {
+    height: 343px;
+    background: #D9D9D9;
+    mix-blend-mode: luminosity;
+    box-shadow: 1.2px 1.2px 1.2px;
+    border-radius: 43px;
+    filter: blur(1.2px);
+}
+
+.auth-buttons {
+    width: 178px;
+    height: 39.6px;
+    left: 1285px;
+    top: 40px;
+    position: absolute;
+    display: inline-flex;
+    gap: 12px;
+}
+
+.auth-button {
+    height: 32px;
+    padding: 3px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+}
+
+.sign-in {
+    flex: 1;
+    background: #E3E3E3;
+    border: 1px #767676 solid;
+    color: #1E1E1E;
+}
+
+.register {
+    flex: 1;
+    background: #2C2C2C;
+    border: 1px #2C2C2C solid;
+    color: #F5F5F5;
+}
+
+.menu-item {
+    position: absolute;
+    height: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: Inter;
+    font-weight: 400;
+    color: #1E1E1E;
+}
+
+
+.documents {
+    left: 860px;
+    top: 40px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in;
+}
+
+.transaction-history {
+    left: 992px;
+    top: 40px;
+    width: 143px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in;
+
+}
+
+.order {
+    left: 1185px;
+    top: 40px;
+}
+
+.home {
+    left: 685px;
+    top: 40px;
+    background: #F5F5F5;
+    transition: background-color 0.2s ease-in;
+}
+
+.cart {
+    left: 779px;
+    top: 40px;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in;
+}
+
+.fade-in-bg {
+    background-color: white;
+    /* The color it fades to */
+}
+
+.brand {
+    left: 163px;
+    top: 60px;
+    position: absolute;
+    text-align: center;
+    font-size: 31px;
+    font-family: Inter;
+    font-weight: 600;
+    color: black;
+}
+
+.greeting {
+    left: 517px;
+    top: 228px;
+    position: absolute;
+    font-size: 48px;
+    font-family: Roboto;
+    font-style: italic;
+    color: black;
+}
+
+.account-summary,
+.recent-activities {
+    position: absolute;
+    font-size: 50px;
+    font-family: Arial;
+    font-weight: 700;
+    color: black;
+}
+
+.account-summary {
+    left: 53px;
+    top: 412px;
+}
+
+.recent-activities {
+    left: 53px;
+    top: 785px;
+}
+
+.user-info {
+    position: absolute;
+    font-size: 38px;
+    font-family: Roboto;
+    color: black;
+}
+
+.username {
+    left: 53px;
+    top: 495px;
+}
+
+.document1 {
+    left: 53px;
+    top: 876px;
+}
+
+.rfid {
+    left: 53px;
+    top: 553px;
+}
+
+.points {
+    left: 53px;
+    top: 609px;
+}
+
+.recharged {
+    left: 53px;
+    top: 930px;
+}
+
+.document2 {
+    left: 53px;
+    top: 985px;
+}
+
+.profile-picture-container {
+    width: 150px;
+    height: 140px;
+    left: 27px;
+    top: 25px;
+    position: absolute;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50px;
+}
+
+.picture-overlay {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: linear-gradient(235deg, rgba(255, 255, 255, 0) 19%, white 100%),
+        linear-gradient(235deg, rgba(255, 255, 255, 0) 65%, #00FFF0 100%);
+    box-shadow: 0px 4px 8.8px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 50px;
+}
+
+.profile-picture-alternative {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.alternative-overlay {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: linear-gradient(235deg, #00F0FF 0%, white 100%),
+        linear-gradient(235deg, rgba(255, 255, 255, 0) 42%, #FA00FF 100%);
+    border-radius: 73px;
+}

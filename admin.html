@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PrintPay</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #reader {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #qr-result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        .transaction-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .transaction-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .action-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .action-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Dashboard</h1>
+        
+        <div class="section">
+            <h2>QR Code Scanner</h2>
+            <div id="reader"></div>
+            <div id="qr-result"></div>
+            
+            <div class="qr-generator" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                <h3>Generate QR Code</h3>
+                <div class="button-container">
+                    <button class="action-button" onclick="generateQR()">Generate New QR</button>
+                </div>
+                <div id="qrcode" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Past Transactions</h2>
+            <div id="transaction-history" class="transaction-list">
+                Loading transactions...
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        // Initialize QR Scanner
+        function initializeScanner() {
+            const html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 });
+            
+            html5QrcodeScanner.render((decodedText, decodedResult) => {
+                document.getElementById('qr-result').innerHTML = 
+                    `<p>Code scanned: ${decodedText}</p>
+                     <button class="action-button" onclick="processPayment('${decodedText}')">
+                         Proceed to Payment
+                     </button>`;
+            });
+        }
+
+        // Generate Random QR Code
+        function generateQR() {
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = ''; // Clear previous QR codes
+            
+            // Create new QR code
+            new QRCode(qrContainer, {
+                text: randomNumber.toString(),
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            
+            // Add the number below the QR code
+            const numberDisplay = document.createElement('p');
+            numberDisplay.textContent = `Generated Number: ${randomNumber}`;
+            numberDisplay.style.textAlign = 'center';
+            numberDisplay.style.marginTop = '10px';
+            qrContainer.appendChild(numberDisplay);
+        }
+
+        // Process Payment using Razorpay
+        function processPayment(amount) {
+            const options = {
+                key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
+                amount: amount * 100, // Amount in paise
+                currency: 'INR',
+                name: 'PrintPay',
+                description: 'Payment for printing services',
+                handler: function (response) {
+                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+                    loadTransactions(); // Reload transactions after payment
+                }
+            };
+            
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        // Load Transaction History
+        async function loadTransactions() {
+            try {
+                const response = await fetch('TransactionHistory.html');
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const transactions = doc.querySelectorAll('.transaction-item');
+                
+                const container = document.getElementById('transaction-history');
+                container.innerHTML = '';
+                
+                transactions.forEach(transaction => {
+                    container.appendChild(transaction.cloneNode(true));
+                });
+            } catch (error) {
+                console.error('Error loading transactions:', error);
+                document.getElementById('transaction-history').innerHTML = 
+                    'Error loading transactions. Please try again.';
+            }
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            initializeScanner();
+            loadTransactions();
+        };
+    </script>
+</body>
+</html> 
